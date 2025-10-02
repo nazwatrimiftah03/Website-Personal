@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Pribadi - Nazwa Tri Mifthah Siregar</title>
+    <style>
+        body {
+        font-family: "Poppins", Arial, sans-serif;
+        margin: 0;
+        background: #f8f9fc;
+        color: #333;
+        scroll-behavior: smooth;
+        }
+        
+        nav {
+        position: sticky;
+        top: 0;
+        background: #cb1193;
+        padding: 12px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 100;
+        }
+        nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 0;
+        padding: 0;
+        }
+        nav ul li a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 20px;
+        transition: 0.3s;
+        }
+        nav ul li a:hover, nav ul li a.active {
+        background: white;
+        color: #cb1193;
+        }
+
+        header {
+        background: linear-gradient(135deg, #cb1193, #eae8ea);
+        color: white;
+        padding: 2.5rem 1rem;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        text-align: left;
+        }
+        .profile-pic {
+        width: 160px;
+        height: 160px;
+        object-fit: cover;
+        border-radius: 20px;
+        border: 4px solid #fff;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        flex-shrink: 0;
+        }
+        .header-text h1 { margin: 0; font-size: 2.2rem; }
+        .header-text p { margin-top: 10px; font-style: italic; font-size: 1.1rem; }
+
+        .container {
+        max-width: 950px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        }
+        section {
+        background: #fff;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        transition: transform 0.2s;
+        }
+        section:hover { transform: translateY(-4px); }
+        h2 {
+        margin-top: 0;
+        color: #cb11af;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 8px;
+        }
+        ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        }
+        ul li {
+        background: #eef2ff;
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-weight: 500;
+        color: #951d65;
+        }
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        border-radius: 10px;
+        overflow: hidden;
+        }
+        th, td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #e5e7eb;
+        }
+        th { background: #cb11a9; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+
+        .skill { margin: 10px 0; }
+        .skill-name { font-weight: 500; margin-bottom: 5px; }
+        .progress {
+        background: #e5e7eb;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 12px;
+        }
+        .progress-bar {
+        height: 100%;
+        text-align: right;
+        padding-right: 5px;
+        color: white;
+        font-size: 11px;
+        line-height: 12px;
+        background: linear-gradient(90deg, #cb1193, #ff4da6);
+        }
+
+        .welcome-popup {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .welcome-popup.active {
+        opacity: 1;
+        visibility: visible;
+        }
+        .welcome-box {
+        background: #fff;
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 400px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        animation: popUp 0.5s ease;
+        }
+        @keyframes popUp {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+        }
+        .welcome-box h2 {
+        margin: 0 0 10px;
+        color: #cb1193;
+        }
+        .welcome-box p { margin: 0 0 20px; }
+        .close-btn {
+        background: #cb1193;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        }
+        .close-btn:hover {
+        background: #951d65;
+        }
+
+        @media (max-width: 768px) {
+        header { flex-direction: column; text-align: center; }
+        .header-text h1 { font-size: 1.8rem; }
+        .profile-pic { width: 120px; height: 120px; }
+        }
+    </style>
+    </head>
+    <body>
+
+    <!-- Popup Sambutan -->
+    <div class="welcome-popup" id="welcomePopup">
+        <div class="welcome-box">
+        <h2>Selamat Datang! 👋</h2>
+        <p>Halo, ini adalah website pribadi saya.<br>
+        Semoga betah menjelajahi profil saya 😊</p>
+        <button class="close-btn" onclick="closePopup()">Masuk</button>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav>
+        <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#identitas">Identitas</a></li>
+        <li><a href="#hobi">Hobi</a></li>
+        <li><a href="#pendidikan">Pendidikan</a></li>
+        <li><a href="#skill">Skill</a></li>
+        <li><a href="#jadwal">Jadwal</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <img src="./img/FOTO NONFORMAL.jpg" alt="Foto Profil Nazwa Tri Mifthah Siregar" class="profile-pic">
+        <div class="header-text">
+        <h1>Nazwa Tri Mifthah Siregar</h1>
+        <p>“Jangan takut gagal, itu adalah bagian dari kesuksesan.”</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="identitas">
+        <h2>Identitas</h2>
+        <p><b>Nama:</b> Nazwa Tri Mifthah Siregar</p>
+        <p><b>NIM:</b> 241401106</p>
+        <p><b>Kelas:</b> Kom A</p>
+        </section>
+
+        <section id="hobi">
+        <h2>Hobi</h2>
+        <ul>
+            <li>Memasak</li>
+            <li>Menonton</li>
+            <li>Mencari hal baru</li>
+        </ul>
+        </section>
+
+        <section>
+        <h2>Perkenalan Singkat</h2>
+        <p>Halo everyone, nama saya <b>Nazwa</b>, saya berasal dari Medan dan saat ini menempuh pendidikan di <b>Universitas Sumatera Utara</b>, program studi <b>Computer Science</b> semester 3. Saya suka menonton, memasak, dan mencari hal-hal baru. Senang bisa bertemu dengan kalian semua!</p>
+        </section>
+
+        <section id="pendidikan">
+        <h2>Pendidikan</h2>
+        <ul>
+            <li>TK KEMALA BHANYANGKARI 17 GUNUNGTUA (2010 – 2012)</li>
+            <li>SDN 101110 GUNUNGTUA (2012 – 2018)</li>
+            <li>SMPS NURUL ILMI PADANGSIDIMPUAN (2018 – 2021)</li>
+            <li>SMAS NURUL ILMI PADANGSIDIMPUAN (2021 – 2024)</li>
+            <li>UNIVERSITAS SUMATERA UTARA – Ilmu Komputer (2024 – sekarang)</li>
+        </ul>
+        </section>
+
+        <section id="skill">
+        <h2>Skill / Keahlian</h2>
+        <div class="skill">
+            <div class="skill-name">Python</div>
+            <div class="progress"><div class="progress-bar" style="width:60%">60%</div></div>
+        </div>
+        <div class="skill">
+            <div class="skill-name">C & C++</div>
+            <div class="progress"><div class="progress-bar" style="width:70%">70%</div></div>
+        </div>
+        <div class="skill">
+            <div class="skill-name">Pascal</div>
+            <div class="progress"><div class="progress-bar" style="width:80%">80%</div></div>
+        </div>
+        <div class="skill">
+            <div class="skill-name">Word</div>
+            <div class="progress"><div class="progress-bar" style="width:90%">90%</div></div>
+        </div>
+        </section>
+
+        <section id="jadwal">
+        <h2>Jadwal Kuliah</h2>
+        <img src="./img/JADWAL PERKULIAHAN SEM 3.png" alt="Jadwal Kuliah" style="max-width:100%;border-radius:12px;margin-bottom:15px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+        <table>
+            <thead>
+            <tr>
+                <th>Hari</th>
+                <th>Mata Kuliah</th>
+                <th>Waktu</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td>Senin</td><td>Cultural Awareness</td><td>10:30 – 12:10</td></tr>
+            <tr><td>Selasa</td><td>IELTS Preparation</td><td>08:50 – 10:30</td></tr>
+            <tr><td></td><td>Kecerdasan Buatan</td><td>13:50 – 16:20</td></tr>
+            <tr><td>Rabu</td><td>Pemrograman Web</td><td>08:00 – 10:30</td></tr>
+            <tr><td></td><td>Basis Data</td><td>14:40 – 17:10</td></tr>
+            <tr><td>Kamis</td><td>Etika Profesi</td><td>08:00 – 09:40</td></tr>
+            <tr><td>Jumat</td><td>Wirausaha Digital</td><td>08:00 – 09:40</td></tr>
+            <tr><td></td><td>Struktur Data</td><td>13:50 – 16:20</td></tr>
+            </tbody>
+        </table>
+        </section>
+
+        <section id="cv">
+        <h2>Portofolio / CV</h2>
+        <p>Berikut adalah portofolio dan CV saya:</p>
+        <img src="./img/cv terbaru nazwa tri mifthah_page-0001.jpg" alt="CV Nazwa" style="max-width:100%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+        </section>
+
+        <section id="kontak">
+        <h2>Kontak & Sosial Media</h2>
+        <p><b>Email:</b> <a href="mailto:nazwatrimiftah03@gmail.com">nazwatrimiftah03@gmail.com</a></p>
+        <p><b>Instagram:</b> <a href="https://instagram.com/nazwa_trimiftah" target="_blank">@nazwa_trimiftah</a></p>
+        <p><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/nazwa-tri-miftah" target="_blank">Nazwa Tri Miftah</a></p>
+        </section>
+    </div>
+
+    <!-- Script -->
+    <script src="./script.js"></script>
+</body>
+</html>
